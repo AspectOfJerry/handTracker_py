@@ -4,7 +4,7 @@ import mediapipe
 
 class handTracker():
     # leave `mode` True for video streams (false for stream of unrelated images), maxHands, detectionConfidence, trackingConfidence
-    def __init__(self, mode=True, maxHands=2, detectionConfidence=0.60, trackingConfidence=0.5):
+    def __init__(self, mode=True, maxHands=2, detectionConfidence=0.60, trackingConfidence=0.55):
         self.mode = mode
         self.maxHands = maxHands
         self.detectionConfidence = detectionConfidence
