@@ -17,12 +17,12 @@ class handTracker():
     # image, draw on the image?
     def findHands(self, image, draw=True):
         imageRGB = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        self.results = self.hands.process(imageRGB)
+        self.output = self.hands.process(imageRGB)
 
-        if (self.results.multi_hand_landmarks):
-            for handLandmarks in self.results.multi_hand_landmarks:
+        if (self.output.multi_hand_landmarks):
+            for handLandmarks in self.output.multi_hand_landmarks:
                 if (draw):
-                    cv2.putText(image, f"Confidence: {str(round(self.results.multi_handedness[0].classification[0].score, 3))}", (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.5, (253, 253, 253), 1)
+                    cv2.putText(image, f"Confidence: {str(round(self.output.multi_handedness[0].classification[0].score, 3))}", (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.5, (253, 253, 253), 1)
                     self.mediapipeDraw.draw_landmarks(image, handLandmarks, self.mpHands.HAND_CONNECTIONS)
 
         return image
@@ -31,8 +31,8 @@ class handTracker():
     def getPos(self, image, handN=0, draw=True):
         landmarks = []
 
-        if (self.results.multi_hand_landmarks):
-            hand = self.results.multi_hand_landmarks[handN]
+        if (self.output.multi_hand_landmarks):
+            hand = self.output.multi_hand_landmarks[handN]
 
             for id, landmark in enumerate(hand.landmark):
                 height, width, channel = image.shape
